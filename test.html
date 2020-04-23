@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+
+
+  <script>
+    //  用js实现代码，找出2个数组里相同的元素。
+    var arr1 = [1,2,3,4,5,6,7];
+    var arr2 = [6,3,4,2];
+    function getSame(arr1, arr2) {
+      let arr = [];
+      for (let i = 0; i < arr2.length; i++) {
+          for (let j = 0; j < arr1.length; j++) {
+              if(arr1[j] === arr2[i]){
+                arr.push(arr1[j]);
+              }
+          }
+      }
+      return arr;
+    };
+    console.log(getSame(arr1,arr2));
+
+
+    //js题目：判断数字是否为对称数，比如121，1331，111。
+    let num = 121;
+    function isReverse(num){
+      if(typeof num === 'number'){
+        var test = String(num).split('').reverse().join('');
+        return num === Number(test);
+      }
+      return false;
+    }
+    console.log(isReverse(num));
+
+
+
+    //js题目：获取一个字符串的真实长度，中文当作2个字符长度。
+    console.log(countLength('a'));
+    function countLength(str){
+      if(typeof str === 'string'){
+        let len = 0;    
+        for (var i=0; i<str.length; i++) {    
+            if (str.charCodeAt(i)>127 || str.charCodeAt(i)==94) {    
+                len += 2;    
+            } else {    
+                len ++;    
+            }    
+        }    
+        return len;    
+      }
+      return str;
+    }
+
+
+    //js题目：实现一个js方法appendParams，可以给url加上多个新的参数，多考虑兼容性。
+
+    console.log(appendParams('http://url', {a:1,b:2}));
+    function appendParams(url,data){
+      let str = '';
+      if(typeof data === 'object'){
+        for(k in data)
+          {
+            str += k +'='+data[k] +'&';
+          } 	
+          str = str.substring(0,str.length - 1);
+          return url + '?' +str;
+      }
+
+      return url;
+    }
+
+
+
+    //js题目：给一个时间戳，计算出这个时间戳对应当月的第一天0点0分0秒的时间戳。
+    console.log(getStamp(new Date().getTime()));
+    function getStamp(stamp){
+      if(typeof stamp === 'number'){
+        let monthFirst=new Date();
+        monthFirst.setFullYear(new Date(stamp).getFullYear());
+        monthFirst.setMonth(new Date(stamp).getMonth());
+        monthFirst.setDate(1);
+        monthFirst.setHours(0);
+        monthFirst.setSeconds(0);
+        monthFirst.setMinutes(0);
+        return monthFirst.getTime();
+      }
+      return stamp;
+    }
+
+  </script>
+</body>
+</html>
