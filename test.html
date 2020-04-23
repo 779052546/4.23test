@@ -94,6 +94,30 @@
       return stamp;
     }
 
+
+  //js题目：实现一个发布订阅模式示例：实现一个pubSub类，当执行pubSub.subscribe(事件名, 处理方法)可以订阅某个事件，
+  //当执行pubSub.publish(事件名, 数据)的时候可以发布某个事件。
+  var pubSub = (function() {  
+      let eventObj = {};
+      return {
+          subscribe: function(event, fn) {
+              eventObj[event] = fn;
+          },
+          publish: function(event) {
+              if (eventObj[event]){
+                eventObj[event]();
+              }
+          },
+      }
+  }());
+
+
+  pubSub.subscribe('fn', function() {  
+      console.log('fn... subscribe');
+  });
+  pubSub.publish('fn');  
+
+
   </script>
 </body>
 </html>
